@@ -1,5 +1,6 @@
 from affichage import *
 import random
+from piece import *
 
 
 TAILLE_MAX = 6
@@ -8,17 +9,32 @@ TAILLE_MIN = 3
 VIDE = 0
 
 
-def create_grid():
+def create_grid(): # remplir
 
     grid = [[VIDE for _ in range(NB_COLUMN)] for _ in range(NB_LINE)]
 
     count = 1
 
+    list_piece = []
+
     while not is_full(grid):
-        generate_piece(grid, count)
+        list = generate_piece(grid, count)
+
+        list_piece.append(piece(count, len(list),list))
+
         count += 1
 
+    for i in list_piece:
+        print(i.val,"size", i.size,":", i.list)
+
     return grid
+
+
+def fusion(list_piece, grid):
+
+    for i in list_piece:
+
+        if i.size
 
 
 def is_full(grid):
@@ -34,6 +50,7 @@ def is_full(grid):
 def generate_piece(grid, count):
 
     choice_list = []
+    choosed_list = []
 
     l = random.randint(0, NB_LINE - 1)
     c = random.randint(0, NB_COLUMN - 1)
@@ -46,6 +63,7 @@ def generate_piece(grid, count):
     print(count, " --> ", N)
 
     grid[l][c] = count
+    choosed_list.append((l, c))
     print(l, c)
 
     N -= 1
@@ -74,11 +92,15 @@ def generate_piece(grid, count):
         choice_list.remove((l2, c2))
 
         grid[l2][c2] = count
+
+        choosed_list.append((l2, c2))
         print(N, ":", l2, c2)
 
         (l, c) = (l2, c2)
 
         N -= 1
+
+    return choosed_list
 
 
 
