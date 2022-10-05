@@ -5,16 +5,12 @@ import random
 from piece import *
 
 
-TAILLE_MAX = 6
-TAILLE_MIN = 3
-
-VIDE = 0
-
 
 def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remplissons la grille
 
     # Initialisation de la grille avec que des cases vides = 0
-    # grid = [[VIDE for _ in range(NB_COLUMN)] for _ in range(NB_LINE)]
+
+    init_grid(grid)
 
     # count permet de donner une valeur à chaque type de pièces
     count = 1
@@ -36,6 +32,7 @@ def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remp
     # fonction qui permet de fusionner les pièces trop petites
     fusion(list_piece, grid)
 
+    list_game_piece.clear()
     remove_game_pieces(grid, list_game_piece, list_piece)
 
     affichage.draw_grid(cnv)
@@ -45,6 +42,14 @@ def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remp
     write_grid(grid)
 
     print(list_game_piece)
+
+
+def init_grid(grid):
+
+    for l in range(NB_LINE):
+        for c in range(NB_COLUMN):
+
+            grid[l][c] = VIDE
 
 
 def fusion(list_piece, grid):#fusionne les pièces de taille 1
