@@ -104,13 +104,6 @@ def fusion(list_piece, grid):#fusionne les pièces de taille 1
             choosed_piece.list.append((l, c))
 
 
-
-
-
-
-
-
-
 def is_full(grid): #vérifier que la grille ne contient aucun 0
 
     for l in range(NB_LINE):
@@ -178,8 +171,6 @@ def generate_piece(grid, count): #genere une pièce dans la grille
         N -= 1
 
     return choosed_list
-
-
 
 
 def size_piece(): # renvoie la taille de la pièce en fonction de probabilités
