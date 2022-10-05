@@ -35,13 +35,35 @@ def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remp
     # remove_game_pieces(grid, list_game_piece, list_piece)
     remove_random_pieces(list_piece, list_game_piece, grid)
 
+    list_piece_to_ref(list_game_piece)
+
     affichage.draw_grid(cnv)
     affichage.draw_grid_colour(cnv, grid)
     affichage.show_number_grid(cnv, grid)
 
     write_grid(grid)
 
-    print(list_game_piece)
+    for p in list_game_piece:
+
+        print(p.val)
+
+        for coordo in p.list:
+            print(coordo)
+
+
+def list_piece_to_ref(list_game_piece):
+
+    for piece in list_game_piece:
+
+        (l, c) = piece.list[0]
+
+        for i in range(len(piece.list)):
+
+            coordo = piece.list[i]
+
+            piece.list[i] = coordo[0] - l, coordo[1] - c
+
+
 
 
 def init_grid(grid):

@@ -46,6 +46,11 @@ def draw_grid_colour(cnv, grid):
                 cnv.create_rectangle(x1, y1, x2, y2, fill='white', width=0)
 
 
+def draw_list_pieces(cnv, list_piece):
+
+    print("ok")
+
+
 def show_number_grid(cnv, grid):
     for i in range(NB_LINE):
         for j in range(NB_COLUMN):
@@ -72,3 +77,5 @@ def id_to_random_color(number):
     # print(color)
     # print(result)
     return result
+
+

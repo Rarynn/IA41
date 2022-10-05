@@ -28,7 +28,9 @@ def remove_random_pieces(list_piece,list_game_piece,grid):  # enlève des pièce
     for i in range(5):
         rand=random.randint(0,len(list_piece)-1)
         list_game_piece.append(list_piece[rand])
-        list_piece.remove(list_piece[rand])
+
         for coordo in list_piece[rand].list:
             (l,c) = coordo
             grid[l][c] = VIDE
+
+        list_piece.remove(list_piece[rand])
