@@ -24,11 +24,11 @@ def read_grid(grid):  # lit la grille dans un fichier
 
     return grid
 
-def remove_random_pieces(list_piece,list_game_piece,grid): #enlève des pièces aléatoirement
+def remove_random_pieces(list_piece,list_game_piece,grid):  # enlève des pièces aléatoirement
     for i in range(5):
         rand=random.randint(0,len(list_piece)-1)
         list_game_piece.append(list_piece[rand])
         list_piece.remove(list_piece[rand])
-        for list_piece[rand] in list_piece[rand].list:
-            (l,c) = list_piece[rand]
+        for coordo in list_piece[rand].list:
+            (l,c) = coordo
             grid[l][c] = VIDE

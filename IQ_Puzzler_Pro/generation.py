@@ -5,7 +5,6 @@ import random
 from piece import *
 
 
-
 def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remplissons la grille
 
     # Initialisation de la grille avec que des cases vides = 0
@@ -33,7 +32,8 @@ def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remp
     fusion(list_piece, grid)
 
     list_game_piece.clear()
-    remove_game_pieces(grid, list_game_piece, list_piece)
+    # remove_game_pieces(grid, list_game_piece, list_piece)
+    remove_random_pieces(list_piece, list_game_piece, grid)
 
     affichage.draw_grid(cnv)
     affichage.draw_grid_colour(cnv, grid)
