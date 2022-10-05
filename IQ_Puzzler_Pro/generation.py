@@ -1,5 +1,6 @@
 import affichage
 from constante import *
+from gen2 import *
 import random
 from piece import *
 
