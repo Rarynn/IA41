@@ -10,10 +10,10 @@ TAILLE_MIN = 3
 VIDE = 0
 
 
-def create_grid(cnv):  # fonction dans laquelle nous remplissons la grille
+def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remplissons la grille
 
     # Initialisation de la grille avec que des cases vides = 0
-    grid = [[VIDE for _ in range(NB_COLUMN)] for _ in range(NB_LINE)]
+    # grid = [[VIDE for _ in range(NB_COLUMN)] for _ in range(NB_LINE)]
 
     # count permet de donner une valeur à chaque type de pièces
     count = 1
@@ -32,26 +32,18 @@ def create_grid(cnv):  # fonction dans laquelle nous remplissons la grille
 
         count += 1
 
-    # draw_grid_colour(cnv, grid)
-
-    for i in list_piece:
-        print(i.val, "size", i.size, ":", i.list)
-
     # fonction qui permet de fusionner les pièces trop petites
     fusion(list_piece, grid)
 
-    remove_game_pieces(grid, list_piece)
+    remove_game_pieces(grid, list_game_piece, list_piece)
 
     affichage.draw_grid(cnv)
     affichage.draw_grid_colour(cnv, grid)
     affichage.show_number_grid(cnv, grid)
 
-    for i in list_piece:
-        print(i.val, "size", i.size, ":", i.list)
-
     write_grid(grid)
 
-    return grid
+    print(list_game_piece)
 
 
 def fusion(list_piece, grid):#fusionne les pièces de taille 1
@@ -126,12 +118,10 @@ def generate_piece(grid, count): #genere une pièce dans la grille
         l = random.randint(0, NB_LINE - 1)
         c = random.randint(0, NB_COLUMN - 1)
 
-    N = size_piece() 
-    print(count, " --> ", N)
+    N = size_piece()
 
     grid[l][c] = count
     choosed_list.append((l, c)) # ajoute la case à la liste des cases de la pièce
-    print(l, c)
 
     N -= 1
 
@@ -145,7 +135,6 @@ def generate_piece(grid, count): #genere une pièce dans la grille
 
                     # ajoute la case à la liste des cases qui peuvent être élues
                     choice_list.append((l + i, c))
-
 
             if 0 <= c + i < NB_COLUMN and grid[l][c + i] == VIDE:
 
@@ -214,12 +203,10 @@ def read_grid():  # lit la grille dans un fichier
 
     return grid
 
+
 # fonction qui enlève les pièces se trouvant en bas du plateau
 
-
-def remove_game_pieces(grid, list_piece):
-
-    list_game_piece = []
+def remove_game_pieces(grid, list_game_piece, list_piece):
 
     for c in range(NB_COLUMN):
         val = grid[NB_LINE - 1][c]
@@ -237,7 +224,6 @@ def remove_game_pieces(grid, list_piece):
                         print(l, c)
                         grid[l][c] = VIDE
 
-    return list_game_piece
 
 
 
