@@ -1,4 +1,6 @@
-from generation import*
+from constante import*
+import random
+
 
 
 
@@ -21,3 +23,12 @@ def read_grid(grid):  # lit la grille dans un fichier
     f.close()
 
     return grid
+
+def remove_random_pieces(list_piece,list_game_piece,grid): #enlève des pièces aléatoirement
+    for i in range(5):
+        rand=random.randint(0,len(list_piece)-1)
+        list_game_piece.append(list_piece[rand])
+        list_piece.remove(list_piece[rand])
+        for list_piece[rand] in list_piece[rand].list:
+            (l,c) = list_piece[rand]
+            grid[l][c] = VIDE
