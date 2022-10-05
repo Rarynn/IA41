@@ -20,7 +20,6 @@ generate_button = Button(window, text="Générer", font='Helvetica 15 bold',
 
 generate_button.place(x=2 * TAB_GAP + WIDTH_TAB, y=TAB_GAP + 3 * COTE_CASE)
 
-draw_grid(cnv)
 
 # grid = create_grid(cnv)
 

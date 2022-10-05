@@ -42,6 +42,9 @@ def draw_grid_colour(cnv, grid):
                 # str(color)
                 cnv.create_rectangle(x1, y1, x2, y2, fill='#'+color, width=0)
 
+            else:
+                cnv.create_rectangle(x1, y1, x2, y2, fill='white', width=0)
+
 
 def show_number_grid(cnv, grid):
     for i in range(NB_LINE):

@@ -1,4 +1,5 @@
-from affichage import *
+import affichage
+from constante import *
 import random
 from piece import *
 
@@ -39,8 +40,16 @@ def create_grid(cnv):  # fonction dans laquelle nous remplissons la grille
     # fonction qui permet de fusionner les pièces trop petites
     fusion(list_piece, grid)
 
+    remove_game_pieces(grid, list_piece)
+
+    affichage.draw_grid(cnv)
+    affichage.draw_grid_colour(cnv, grid)
+    affichage.show_number_grid(cnv, grid)
+
     for i in list_piece:
         print(i.val, "size", i.size, ":", i.list)
+
+    write_grid(grid)
 
     return grid
 
@@ -128,7 +137,7 @@ def generate_piece(grid, count): #genere une pièce dans la grille
     print(count, " --> ", N)
 
     grid[l][c] = count
-    choosed_list.append((l, c)) #ajoute la case à la liste des cases de la pièce
+    choosed_list.append((l, c)) # ajoute la case à la liste des cases de la pièce
     print(l, c)
 
     N -= 1
@@ -139,8 +148,11 @@ def generate_piece(grid, count): #genere une pièce dans la grille
 
             if 0 <= l + i < NB_LINE and grid[l + i][c] == VIDE:
 
-                if choice_list.count((l + i, c)) == 0: #vérifie qu'on peut s'étendre
-                    choice_list.append((l + i, c))#ajoute la case à la liste des cases qui peuvent être élues
+                if choice_list.count((l + i, c)) == VIDE:  # vérifie qu'on peut s'étendre
+
+                    # ajoute la case à la liste des cases qui peuvent être élues
+                    choice_list.append((l + i, c))
+
 
             if 0 <= c + i < NB_COLUMN and grid[l][c + i] == VIDE:
 
@@ -188,7 +200,7 @@ def size_piece(): # renvoie la taille de la pièce en fonction de probabilités
     return N
 
 
-def write_grid(grid): # écrit la grille dans un fichier
+def write_grid(grid):  # écrit la grille dans un fichier
     f = open("grid.txt", "w")
 
     for l in range(NB_LINE):
@@ -198,7 +210,8 @@ def write_grid(grid): # écrit la grille dans un fichier
 
     f.close()
 
-def read_grid(): # lit la grille dans un fichier
+
+def read_grid():  # lit la grille dans un fichier
     f = open("grid.txt", "r")
 
     grid = []
@@ -209,6 +222,31 @@ def read_grid(): # lit la grille dans un fichier
     f.close()
 
     return grid
+
+# fonction qui enlève les pièces se trouvant en bas du plateau
+
+
+def remove_game_pieces(grid, list_piece):
+
+    list_game_piece = []
+
+    for c in range(NB_COLUMN):
+        val = grid[NB_LINE - 1][c]
+
+        if val != VIDE:
+
+            for p in list_piece:
+
+                if p.val == val:
+                    list_game_piece.append(p)
+                    list_piece.remove(p)
+
+                    for c_p in p.list:
+                        (l, c) = c_p
+                        print(l, c)
+                        grid[l][c] = VIDE
+
+    return list_game_piece
 
 
 
