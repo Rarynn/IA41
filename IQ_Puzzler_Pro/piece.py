@@ -6,3 +6,5 @@ class piece:
         self.val = val
         self.size = size
         self.list = list
+
+

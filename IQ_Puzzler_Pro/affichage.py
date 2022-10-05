@@ -2,6 +2,8 @@ import hashlib
 
 from constante import *
 from generation import *
+from tkinter import *
+
 
 def draw_grid(cnv):
     # Dessin plateau
@@ -37,7 +39,7 @@ def draw_grid_colour(cnv, grid):
             if grid[l][c] != VIDE:
 
                 color = id_to_random_color(grid[l][c])
-                #str(color)
+                # str(color)
                 cnv.create_rectangle(x1, y1, x2, y2, fill='#'+color, width=0)
 
 
@@ -45,15 +47,11 @@ def show_number_grid(cnv, grid):
     for i in range(NB_LINE):
         for j in range(NB_COLUMN):
 
-            # w = 3 + int(i / 3)
-            # w2 = 3 + int(j / 3)
-
             x = COTE_CASE / 2 + 5 + j * (COTE_CASE + LINE_WIDTH / 2)
             y = COTE_CASE / 2 + 5 + i * (COTE_CASE + LINE_WIDTH / 2)
 
             if grid[i][j] != 0:
                 cnv.create_text(x, y, text=grid[i][j], fill='black', font='Helvetica 30 bold')
-
 
 
 def id_to_random_color(number):
@@ -68,6 +66,6 @@ def id_to_random_color(number):
             color[i] -= (color[i] - 255)
 
     result = f'{color[0]:x}' + f'{color[1]:x}' + f'{color[2]:x}'
-    #print(color)
-    #print(result)
+    # print(color)
+    # print(result)
     return result
