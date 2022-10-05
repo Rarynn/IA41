@@ -16,10 +16,10 @@ cnv.place(x=TAB_GAP, y=TAB_GAP)
 
 draw_grid(cnv)
 
-grid = create_grid()
+grid = create_grid(cnv)
 
 draw_grid_colour(cnv, grid)
-show_number_grid(cnv, grid)
+# show_number_grid(cnv, grid)
 
 
 window.mainloop()
