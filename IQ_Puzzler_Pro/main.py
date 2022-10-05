@@ -8,7 +8,6 @@ window = Tk()
 window.title("IQ Puzzler Pro")
 window.geometry("1080x720")
 
-
 cnv = Canvas(window, width=WIDTH_TAB, height=HEIGHT_TAB, background='light gray')
 
 cnv.pack()
@@ -19,7 +18,6 @@ draw_grid(cnv)
 grid = [[VIDE for _ in range(NB_COLUMN)] for _ in range(NB_LINE)]
 
 list_piece = []
-
 
 generate_button = Button(window, text="Générer", font='Helvetica 15 bold',
                          background='light gray', command=(lambda: create_grid(grid, list_piece, cnv)))
