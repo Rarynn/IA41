@@ -45,7 +45,7 @@ def create_grid(cnv):  # fonction dans laquelle nous remplissons la grille
     return grid
 
 
-def fusion(list_piece, grid):
+def fusion(list_piece, grid):#fusionne les pièces de taille 1
 
     for piece in list_piece:
 
@@ -102,7 +102,7 @@ def fusion(list_piece, grid):
 
 
 
-def is_full(grid):
+def is_full(grid): #vérifier que la grille ne contient aucun 0
 
     for l in range(NB_LINE):
         for c in range(NB_COLUMN):
@@ -112,10 +112,10 @@ def is_full(grid):
     return True
 
 
-def generate_piece(grid, count):
+def generate_piece(grid, count): #genere une pièce dans la grille
 
-    choice_list = []
-    choosed_list = []
+    choice_list = [] #cases qui peuvent être élues
+    choosed_list = [] # cases qui composent la pièce
 
     l = random.randint(0, NB_LINE - 1)
     c = random.randint(0, NB_COLUMN - 1)
@@ -124,11 +124,11 @@ def generate_piece(grid, count):
         l = random.randint(0, NB_LINE - 1)
         c = random.randint(0, NB_COLUMN - 1)
 
-    N = size_piece()
+    N = size_piece() 
     print(count, " --> ", N)
 
     grid[l][c] = count
-    choosed_list.append((l, c))
+    choosed_list.append((l, c)) #ajoute la case à la liste des cases de la pièce
     print(l, c)
 
     N -= 1
@@ -139,8 +139,8 @@ def generate_piece(grid, count):
 
             if 0 <= l + i < NB_LINE and grid[l + i][c] == VIDE:
 
-                if choice_list.count((l + i, c)) == 0:
-                    choice_list.append((l + i, c))
+                if choice_list.count((l + i, c)) == 0: #vérifie qu'on peut s'étendre
+                    choice_list.append((l + i, c))#ajoute la case à la liste des cases qui peuvent être élues
 
             if 0 <= c + i < NB_COLUMN and grid[l][c + i] == VIDE:
 
@@ -170,7 +170,7 @@ def generate_piece(grid, count):
 
 
 
-def size_piece():
+def size_piece(): # renvoie la taille de la pièce en fonction de probabilités
     r = random.randint(1, 10)
 
     if r <= 4:
@@ -188,7 +188,27 @@ def size_piece():
     return N
 
 
+def write_grid(grid): # écrit la grille dans un fichier
+    f = open("grid.txt", "w")
 
+    for l in range(NB_LINE):
+        for c in range(NB_COLUMN):
+            f.write(str(grid[l][c]) + " ")
+        f.write("\n")
+
+    f.close()
+
+def read_grid(): # lit la grille dans un fichier
+    f = open("grid.txt", "r")
+
+    grid = []
+
+    for l in range(NB_LINE):
+        grid.append(f.readline().split())
+
+    f.close()
+
+    return grid
 
 
 
