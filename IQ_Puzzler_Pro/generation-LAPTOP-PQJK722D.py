@@ -5,7 +5,7 @@ import random
 from piece import *
 
 
-def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans laquelle nous remplissons la grille
+def create_grid(grid, list_game_piece, cnv):  # fonction dans laquelle nous remplissons la grille
 
     # Initialisation de la grille avec que des cases vides = 0
 
@@ -17,13 +17,13 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
     # liste contenant toutes les pièces de classe pièce avec valeur, taille et liste de coordonnées
     list_piece = []
 
-    # boucle dans laquelle nos pièces vont être créé, on retourne dans la boucle pour chaques nouvelles pièces
+    # boucle dans laquelle nos pièces vont être créé, on retourne dans la boucle pour chaque nouvelles pièces
     while not is_full(grid):
 
         # créer une pièce, la positionne dans la grille et retourne la liste de coordo
         list_coordo = generate_piece(grid, count)
 
-        # ajoute la nouvelle pièce dans liste_piece
+        # ajoute le nouvelle pièce dans liste_piece
         list_piece.append(piece(count, len(list_coordo), list_coordo))
 
         count += 1
@@ -32,8 +32,8 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
     fusion(list_piece, grid)
 
     list_game_piece.clear()
-    # remove_game_pieces(grid, list_game_piece, list_piece)
-    remove_random_pieces(list_piece, list_game_piece, grid)
+    remove_game_pieces(grid, list_game_piece, list_piece)
+    # remove_random_pieces(list_piece, list_game_piece, grid)
 
     list_piece_to_ref(list_game_piece)
 
@@ -41,45 +41,27 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
     affichage.draw_grid_colour(cnv, grid)
     affichage.show_number_grid(cnv, grid)
 
-    for c in list_cnv:
-        c.delete('all')
-    list_cnv.clear()
-
-    affichage.draw_list_pieces(window, list_game_piece, list_cnv)
-
     write_grid(grid)
+
+    for p in list_game_piece:
+
+        print(p.val)
+
+        for coordo in p.list:
+            print(coordo)
 
 
 def list_piece_to_ref(list_game_piece):
 
     for piece in list_game_piece:
 
-        (l, c) = mini_size_piece(piece.list)
+        (l, c) = piece.list[0]
 
         for i in range(len(piece.list)):
 
             coordo = piece.list[i]
 
             piece.list[i] = coordo[0] - l, coordo[1] - c
-
-
-def mini_size_piece(list_coordo):
-
-    min_l, min_c = (100, 100)
-
-    for i in list_coordo:
-
-        (l, c) = i
-
-        if l < min_l:
-            min_l = l
-
-        if c < min_c:
-            min_c = c
-
-    return min_l, min_c
-
-
 
 
 
@@ -94,8 +76,6 @@ def init_grid(grid):
 
 def fusion(list_piece, grid):#fusionne les pièces de taille 1
 
-    removed_list = []
-
     for piece in list_piece:
 
         choice_list = []
@@ -103,8 +83,6 @@ def fusion(list_piece, grid):#fusionne les pièces de taille 1
         print(piece.val)
 
         if piece.size == 1:
-
-            removed_list.append(piece)
 
             (l, c) = piece.list[0]
             print(piece.val)
@@ -144,9 +122,6 @@ def fusion(list_piece, grid):#fusionne les pièces de taille 1
 
             choosed_piece.size += 1
             choosed_piece.list.append((l, c))
-
-    for not_piece in removed_list:
-        list_piece.remove(not_piece)
 
 
 def is_full(grid): #vérifier que la grille ne contient aucun 0
