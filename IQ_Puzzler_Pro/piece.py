@@ -9,7 +9,7 @@ class Piece:
 
         # En supposant que la pièce ait un référentiel (0, 0)
 
-        max_widt h = 0
+        max_width = 0
         max_height = 0
 
         min_width = 0
