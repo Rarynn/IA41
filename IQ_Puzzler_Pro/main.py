@@ -1,6 +1,7 @@
 
 from affichage import *
 from generation import *
+from resolution import *
 
 
 window = Tk()
@@ -31,7 +32,7 @@ generate_button = Button(window, text="Générer", font='Helvetica 15 bold',
 generate_button.place(x=2 * TAB_GAP + WIDTH_TAB, y=TAB_GAP + 3 * COTE_CASE)
 
 verify_button = Button(window, text="Verifier", font='Helvetica 15 bold',
-                         background='light gray', command=(lambda: print("ok")))
+                         background='light gray', command=(lambda: resolve(grid, list_game_piece, cnv_game, window)))
 
 verify_button.place(x=2 * TAB_GAP + WIDTH_TAB, y=TAB_GAP + 4 * COTE_CASE)
 

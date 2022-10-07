@@ -24,7 +24,7 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
         list_coordo = generate_piece(grid, count)
 
         # ajoute la nouvelle pièce dans liste_piece
-        list_piece.append(piece(count, len(list_coordo), list_coordo))
+        list_piece.append(Piece(count, len(list_coordo), list_coordo))
 
         count += 1
 
