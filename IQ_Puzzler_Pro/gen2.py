@@ -2,6 +2,7 @@ from constante import*
 import random
 
 
+RAND_GAME_PIECE = random.randint(NB_LINE, NB_LINE*2-1)
 
 
 def write_grid(grid):  # écrit la grille dans un fichier
@@ -25,7 +26,7 @@ def read_grid(grid):  # lit la grille dans un fichier
     return grid
 
 def remove_random_pieces(list_piece,list_game_piece,grid):  # enlève des pièces aléatoirement
-    for i in range(5):
+    for i in range(RAND_GAME_PIECE):
         rand=random.randint(0,len(list_piece)-1)
         list_game_piece.append(list_piece[rand])
 

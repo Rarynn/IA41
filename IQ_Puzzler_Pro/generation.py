@@ -54,34 +54,7 @@ def list_piece_to_ref(list_game_piece):
 
     for piece in list_game_piece:
 
-        (l, c) = mini_size_piece(piece.list)
-
-        for i in range(len(piece.list)):
-
-            coordo = piece.list[i]
-
-            piece.list[i] = coordo[0] - l, coordo[1] - c
-
-
-def mini_size_piece(list_coordo):
-
-    min_l, min_c = (100, 100)
-
-    for i in list_coordo:
-
-        (l, c) = i
-
-        if l < min_l:
-            min_l = l
-
-        if c < min_c:
-            min_c = c
-
-    return min_l, min_c
-
-
-
-
+        piece.piece_to_ref()
 
 
 def init_grid(grid):
@@ -100,14 +73,11 @@ def fusion(list_piece, grid):#fusionne les pièces de taille 1
 
         choice_list = []
 
-        print(piece.val)
-
         if piece.size == 1:
 
             removed_list.append(piece)
 
             (l, c) = piece.list[0]
-            print(piece.val)
 
             for i in range(-1, 2, 2):  # Parcours les cases adjacentes
 
@@ -117,7 +87,6 @@ def fusion(list_piece, grid):#fusionne les pièces de taille 1
 
                         if grid[l + i][c] == p2.val:
 
-                            print(p2.val)
                             choice_list.append(p2)
 
                 if 0 <= c + i < NB_COLUMN:
@@ -125,7 +94,7 @@ def fusion(list_piece, grid):#fusionne les pièces de taille 1
                     for p2 in list_piece:
 
                         if grid[l][c + i] == p2.val:
-                            print(p2.val)
+
                             choice_list.append(p2)
 
             s_max = 10
@@ -206,7 +175,6 @@ def generate_piece(grid, count): #genere une pièce dans la grille
         grid[l2][c2] = count
 
         choosed_list.append((l2, c2))
-        print(N, ":", l2, c2)
 
         (l, c) = (l2, c2)
 
@@ -250,7 +218,6 @@ def remove_game_pieces(grid, list_game_piece, list_piece):
 
                     for c_p in p.list:
                         (l, c) = c_p
-                        print(l, c)
                         grid[l][c] = VIDE
 
 

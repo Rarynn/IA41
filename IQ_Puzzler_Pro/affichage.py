@@ -73,13 +73,10 @@ def draw_list_pieces(window, list_piece, list_cnv):
 
         (h, w) = i.width_length_piece()
 
-        print(i.val, ":")
-        print(h, w)
-
         h *= COTE_CASE + LINE_WIDTH
         w *= COTE_CASE + LINE_WIDTH
 
-        cnv = Canvas(window, width=w, height=h)
+        cnv = Canvas(window, width=w, height=h, background='light gray')
 
         cnv.pack()
         cnv.place(x=last_w + count * 20 + TAB_GAP, y=1.5 * TAB_GAP + HEIGHT_TAB)
@@ -117,8 +114,7 @@ def id_to_random_color(number):
             color[i] -= (color[i] - 255)
 
     result = f'{color[0]:x}' + f'{color[1]:x}' + f'{color[2]:x}'
-    # print(color)
-    # print(result)
+
     return result
 
 
