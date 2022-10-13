@@ -90,8 +90,8 @@ def draw_list_pieces(window, list_piece, list_cnv):
         count += 1
 
 
-
 def show_number_grid(cnv, grid):
+
     for i in range(NB_LINE):
         for j in range(NB_COLUMN):
 

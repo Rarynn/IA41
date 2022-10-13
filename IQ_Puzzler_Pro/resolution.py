@@ -21,6 +21,7 @@ def resolve(grid, list_piece, cnv, list_cnv, window):
 
             if list_piece[0].place_piece(grid, (l, c)):
                 find = True
+                break
 
         if find:
             break
@@ -35,7 +36,3 @@ def resolve(grid, list_piece, cnv, list_cnv, window):
         for i in p.list:
 
             print(i)
-
-
-
-

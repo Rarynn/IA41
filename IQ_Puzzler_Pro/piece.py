@@ -1,5 +1,6 @@
 from constante import *
 
+
 class Piece:
 
     def __init__(self, val, size, list):
@@ -79,7 +80,7 @@ class Piece:
 
         self.ref = self.mini_size_piece()
 
-    def place_piece(self, grid, position):
+    def can_place(self, grid, position):
 
         (ref_l, ref_c) = position
         case_list = []
@@ -96,12 +97,20 @@ class Piece:
             else:
                 return False
 
-        for coord in case_list:
+        return case_list
 
-            (l, c) = coord
-            grid[l][c] = self.val
+    def place_piece(self, grid, position):
 
-        return True
+        case_list = self.can_place(grid, position)
+
+        if case_list != False:
+
+            for coord in case_list:
+                (l, c) = coord
+                grid[l][c] = self.val
+
+            return True
+        return False
 
 
 

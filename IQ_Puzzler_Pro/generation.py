@@ -32,8 +32,8 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
     fusion(list_piece, grid)
 
     list_game_piece.clear()
-    # remove_game_pieces(grid, list_game_piece, list_piece)
-    remove_random_pieces(list_piece, list_game_piece, grid)
+    remove_game_pieces(grid, list_game_piece, list_piece)
+    # remove_random_pieces(list_piece, list_game_piece, grid)
 
     list_piece_to_ref(list_game_piece)
 
@@ -50,9 +50,14 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
     write_grid(grid)
 
 
+# Tourne aléatoirement la pièce un certain nombre de fois puis la met dans referentiel (0, 0)
+
 def list_piece_to_ref(list_game_piece):
 
     for piece in list_game_piece:
+
+        for i in range(random.randint(0,4)):
+            piece.rotation_piece()
 
         piece.piece_to_ref()
 
