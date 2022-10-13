@@ -1,5 +1,5 @@
 from constante import *
-
+import copy
 
 class Piece:
 
@@ -12,7 +12,7 @@ class Piece:
         # (0, 0) lorsque la piece n'est pas dans grid
         self.ref = self.mini_size_piece()
 
-    def width_length_piece(self):
+    def width_length_piece(self):  # retourne la largeur et hauteur
 
         # En supposant que la pièce ait un référentiel (0, 0)
 
@@ -21,8 +21,6 @@ class Piece:
 
         min_width = 0
         min_height = 0
-
-        (last_l, last_c) = (0, 0)
 
         for i in self.list:
 
@@ -40,7 +38,7 @@ class Piece:
             elif c < min_width:
                 min_width = c
 
-        return max_height - min_width + 1, max_width - min_width + 1
+        return max_height - min_height + 1, max_width - min_width + 1
 
     def rotation_piece(self):
 
@@ -49,10 +47,10 @@ class Piece:
 
             self.list[i] = (c, -l)
 
-        for coordo in self.list:
-            print(coordo)
+        # for coordo in self.list:
+            # print(coordo)
 
-    def mini_size_piece(self):
+    def mini_size_piece(self): # retourne le coin en haut à gauche de la pièce
 
         min_l, min_c = (100, 100)
 
@@ -68,7 +66,7 @@ class Piece:
 
         return min_l, min_c
 
-    def piece_to_ref(self):
+    def piece_to_ref(self): # translatte la pièce de sorte que le coté haut gauche soit (0, 0)
 
         (l, c) = self.mini_size_piece()
 
@@ -111,6 +109,52 @@ class Piece:
 
             return True
         return False
+
+    def redundancy_in_rotation(self):
+
+        last_p = copy.deepcopy(Piece(self.val, self.size, self.list))
+
+        last_p.rotation_piece()
+        last_p.piece_to_ref()
+
+        print(self.list)
+        print(last_p.list)
+
+        if self.are_same_piece(last_p):
+            return 1
+
+        last_p.rotation_piece()
+        last_p.piece_to_ref()
+
+        if self.are_same_piece(last_p):
+            return 2
+
+        return 4
+
+    def are_same_piece(self, piece):
+
+        for i in piece.list:
+
+            (l, c) = i
+
+            if not self.is_in_piece(l, c):
+                return False
+
+        return True
+
+    def is_in_piece(self, l, c):
+
+        for i in self.list:
+            (l_2, c_2) = i
+
+            if l_2 == l and c_2 == c:
+                return True
+
+        return False
+
+
+
+
 
 
 

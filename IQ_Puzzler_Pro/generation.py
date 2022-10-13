@@ -35,6 +35,7 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
     remove_game_pieces(grid, list_game_piece, list_piece)
     # remove_random_pieces(list_piece, list_game_piece, grid)
 
+    # Tourne aléatoirement la pièce puis la place dans ref(0, 0)
     list_piece_to_ref(list_game_piece)
 
     affichage.draw_grid(cnv)
@@ -56,7 +57,7 @@ def list_piece_to_ref(list_game_piece):
 
     for piece in list_game_piece:
 
-        for i in range(random.randint(0,4)):
+        for i in range(random.randint(0, 4)):
             piece.rotation_piece()
 
         piece.piece_to_ref()
@@ -70,7 +71,7 @@ def init_grid(grid):
             grid[l][c] = VIDE
 
 
-def fusion(list_piece, grid):#fusionne les pièces de taille 1
+def fusion(list_piece, grid): # fusionne les pièces de taille 1
 
     removed_list = []
 
@@ -148,7 +149,7 @@ def generate_piece(grid, count): #genere une pièce dans la grille
     N = size_piece()
 
     grid[l][c] = count
-    choosed_list.append((l, c)) # ajoute la case à la liste des cases de la pièce
+    choosed_list.append((l, c))  # ajoute la case à la liste des cases de la pièce
 
     N -= 1
 
@@ -188,7 +189,7 @@ def generate_piece(grid, count): #genere une pièce dans la grille
     return choosed_list
 
 
-def size_piece(): # renvoie la taille de la pièce en fonction de probabilités
+def size_piece():  # renvoie la taille de la pièce en fonction de probabilités
     r = random.randint(1, 10)
 
     if r <= 4:

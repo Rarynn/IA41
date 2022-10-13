@@ -1,0 +1,19 @@
+
+
+
+def is_a_rectangle(self):
+
+    print("ok")
+
+    (h, w) = self.width_length_piece()
+
+    (l, c) = self.mini_size_piece()
+
+    print(h, w)
+
+    for i in range(l, l + h):
+        for j in range(c, c + w):
+
+            print(i, j)
+
+
