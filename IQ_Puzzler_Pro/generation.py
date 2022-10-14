@@ -40,7 +40,7 @@ def create_grid(grid, list_game_piece, cnv, window, list_cnv):  # fonction dans 
 
     affichage.draw_grid(cnv)
     affichage.draw_grid_colour(cnv, grid)
-    affichage.show_number_grid(cnv, grid)
+    # affichage.show_number_grid(cnv, grid)
 
     for c in list_cnv:
         c.delete('all')
@@ -124,7 +124,7 @@ def fusion(list_piece, grid): # fusionne les pièces de taille 1
         list_piece.remove(not_piece)
 
 
-def is_full(grid): #vérifier que la grille ne contient aucun 0
+def is_full(grid): # vérifier que la grille ne contient aucun 0
 
     for l in range(NB_LINE):
         for c in range(NB_COLUMN):

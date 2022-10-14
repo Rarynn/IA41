@@ -2,7 +2,8 @@ from constante import*
 import random
 
 
-RAND_GAME_PIECE = random.randint(NB_LINE, NB_LINE*2-1)
+# RAND_GAME_PIECE = random.randint(NB_LINE, NB_LINE*2-1)
+RAND_GAME_PIECE = 9
 
 
 def write_grid(grid):  # écrit la grille dans un fichier
